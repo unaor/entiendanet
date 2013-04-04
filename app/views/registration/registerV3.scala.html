@@ -1,0 +1,85 @@
+@(registrationForm: Form[models.AppUser])
+@import _root_.views.html.authtoken.authenticityToken
+@import helper._
+@import helper.twitterBootstrap._
+@main("EntiendaNet - your solution") {
+    
+    <button type="button" class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="brand" href="#">EntiendaNet</a>
+          <div class="nav-collapse collapse">
+            <ul class="nav">
+              <li class="active"><a href="#">Home</a></li>
+              <li><a href="#about">About</a></li>
+              <li><a href="#contact">Contact</a></li>
+              <li class="dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown">Dropdown <b class="caret"></b></a>
+                <ul class="dropdown-menu">
+                  <li><a href="#">Action</a></li>
+                  <li><a href="#">Another action</a></li>
+                  <li><a href="#">Something else here</a></li>
+                  <li class="divider"></li>
+                  <li class="nav-header">Nav header</li>
+                  <li><a href="#">Separated link</a></li>
+                  <li><a href="#">One more separated link</a></li>
+                </ul>
+              </li>
+            </ul>
+            <form class="navbar-form pull-right">
+              <input class="span2" type="text" placeholder="Email">
+              <input class="span2" type="password" placeholder="Password">
+              <button type="submit" class="btn">Sign in</button>
+            </form>
+          </div>
+    
+} {
+<div class="hero-unit">
+	@helper.form(action = routes.Registration.saveUser) {
+	@authenticityToken()
+	<fieldset>
+            <legend>User Information</legend>
+            @inputText(
+                registrationForm("userFirstName"), 
+                '_label -> "First Name", 
+                '_error -> registrationForm.globalError,
+                '_showConstraints -> false
+            )
+            @inputText(
+                registrationForm("userSurname"), 
+                '_label -> "Last Name", 
+                '_error -> registrationForm.globalError,
+                '_showConstraints -> false
+            )
+            @inputText(
+                registrationForm("email"), 
+                '_label -> "Email", 
+                '_type ->"email",
+                '_error -> registrationForm.globalError,
+                '_showConstraints -> false
+            )
+            
+            @inputPassword(
+                registrationForm("hashedPassword"), 
+                '_label -> "Password",
+                '_help -> "A password must be at least 6 characters. "
+            )
+            
+            @inputPassword(
+                registrationForm("repeatPassword"), 
+                '_label -> "Repeat password",
+                '_help -> "Please repeat your password again.",
+                '_error -> registrationForm.error("password")
+            )
+    </fieldset>
+		
+		<div class="actions">
+            <input type="submit" class="btn btn-primary" value="Sign Up">
+            <a href="@routes.Application.index" class="btn">Cancel</a>
+        </div>
+	}
+</div>
+
+}

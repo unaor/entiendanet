@@ -1,0 +1,14 @@
+users:
+    - !!models.AppUser
+        userFirstName: test
+        userSurname: subject
+        email:  test@test.com
+        hashedPassword: 7a040c72e486b4e83d0f1fa8e7238462124a2be0
+        registrationDate: 2007-08-05
+        
+    - !!models.AppUser
+        userFirstName: uri
+        userSurname: naor
+        email:  uri@test.com
+        hashedPassword: 7a040c72e486b4e83d0f1fa8e7238462124a2be0
+        registrationDate: 2007-08-05
